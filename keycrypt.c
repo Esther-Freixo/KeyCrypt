@@ -1,16 +1,17 @@
 #include <stdio.h>
 #include <string.h>
+#include <openssl/aes.h>
 
 void showFile(FILE *file);
 
 int main() {
-    char password[] = "12345";
-    char userPassword[6];
+    char permanentKey[] = "12345";
+    char userKeyInput[6];
 
     printf("Digite a senha: ");
-    scanf("%5s", userPassword);
+    scanf("%5s", userKeyInput);
 
-    if (strcmp(password, userPassword) == 0){
+    if (strcmp(permanentKey, userKeyInput) == 0){
         FILE *file = fopen("text.dat", "rb");
         if (file == NULL) {
             printf("Falha ao abrir o arquivo");
