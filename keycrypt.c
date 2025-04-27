@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 
+void showFile(FILE *file);
+
 int main() {
     char password[] = "12345";
     char userPassword[6];
@@ -15,11 +17,20 @@ int main() {
             return 1;
         }
 
-        printf("Arquivo aberto com sucesso!");
+        showFile(file);
         fclose(file);
         return 0;
     } else {
         printf("Senha incorreta");
         return 1;
     }
+}
+
+void showFile(FILE *file) {
+    char buffer[1000];
+
+    while(fgets(buffer, sizeof(buffer), file) != NULL) {
+        printf("%s", buffer);
+    }
+    printf("\n\nArquivo fechado com sucesso!");   
 }
